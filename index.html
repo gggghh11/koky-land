@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koky Land</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4E4C2;
+    --clay: #7A4426;
+    --clay-deep: #4A2A18;
+    --orange: #E8641C;
+    --orange-deep: #B8460F;
+    --ink: #2B1810;
+    --line: rgba(43, 24, 16, 0.16);
+    --card-bg: #FFFBF3;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1C130C;
+      --clay: #E8C9A0;
+      --clay-deep: #F4E4C2;
+      --orange: #F0803D;
+      --orange-deep: #FFA25E;
+      --ink: #F4E9D8;
+      --line: rgba(244, 233, 216, 0.16);
+      --card-bg: #26190F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1C130C;
+    --clay: #E8C9A0;
+    --clay-deep: #F4E4C2;
+    --orange: #F0803D;
+    --orange-deep: #FFA25E;
+    --ink: #F4E9D8;
+    --line: rgba(244, 233, 216, 0.16);
+    --card-bg: #26190F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cairo', 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 56px 24px 74px;
+    background: var(--orange);
+    clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: rise 0.7s cubic-bezier(.2,.8,.2,1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .mark {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 18px;
+    display: block;
+  }
+
+  .wordmark {
+    font-family: 'El Messiri', 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 11vw, 4.4rem);
+    color: var(--clay-deep);
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .wordmark span { color: #FFFBF3; }
+
+  .hero-sub {
+    margin: 14px 0 0;
+    font-weight: 600;
+    color: #FFF3E4;
+    font-size: 1.02rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .hero { background: var(--orange); }
+    :root:not([data-theme="light"]) .wordmark { color: #23140B; }
+    :root:not([data-theme="light"]) .wordmark span { color: #4A2A18; }
+    :root:not([data-theme="light"]) .hero-sub { color: #3A2213; }
+  }
+  :root[data-theme="dark"] .wordmark { color: #23140B; }
+  :root[data-theme="dark"] .wordmark span { color: #4A2A18; }
+  :root[data-theme="dark"] .hero-sub { color: #3A2213; }
+
+  /* ---------- Category pill ---------- */
+  .sections { padding: 0 20px; }
+
+  .category { margin-top: 46px; }
+  .category:first-child { margin-top: 20px; }
+
+  .cat-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .cat-pill {
+    background: var(--clay);
+    color: var(--paper);
+    font-weight: 700;
+    font-size: 0.98rem;
+    padding: 8px 20px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .cat-pill { background: var(--clay); color: var(--clay-deep); }
+  }
+  :root[data-theme="dark"] .cat-pill { background: var(--clay); color: var(--clay-deep); }
+
+  .cat-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ---------- Item grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 24px;
+  }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .item-name-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .item-name {
+    font-weight: 700;
+    font-size: 1.06rem;
+    line-height: 1.4;
+  }
+
+  .price {
+    flex-shrink: 0;
+    background: var(--orange);
+    color: #FFFBF3;
+    font-weight: 800;
+    font-size: 0.86rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+  }
+
+  .item-desc {
+    margin: 6px 0 0;
+    color: var(--clay);
+    font-size: 0.86rem;
+    line-height: 1.65;
+    opacity: 0.9;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center;
+    margin-top: 56px;
+    padding: 0 24px;
+    color: var(--clay);
+    font-size: 0.82rem;
+    line-height: 1.9;
+    opacity: 0.85;
+  }
+
+  footer .foot-mark {
+    font-family: 'El Messiri', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--orange-deep);
+    display: block;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <svg class="mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 26C14 20 19 16 24 17C27 12 34 11 38 15C44 14 50 19 49 26C54 27 56 34 52 38C54 43 50 49 44 49H22C15 49 11 44 12 39C8 36 8 29 14 26Z" fill="#FFFBF3"/>
+        <circle cx="26" cy="30" r="2.6" fill="#E8641C"/>
+        <circle cx="36" cy="27" r="2.2" fill="#E8641C"/>
+        <circle cx="33" cy="36" r="1.8" fill="#E8641C"/>
+      </svg>
+      <h1 class="wordmark">koky <span>land</span></h1>
+      <p class="hero-sub">قهوة مختصة، وقعدة مالهاش قواعد</p>
+    </div>
+  </div>
+
+  <div class="sections">
+
+    <section class="category">
+      <div class="cat-head">
+        <span class="cat-pill">مشروبات ساخنة</span>
+        <span class="cat-rule"></span>
+      </div>
+      <div class="grid">
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">فلات وايت</span>
+            <span class="price">٦٠</span>
+          </div>
+          <p class="item-desc">إسبريسو مزدوج مع لبن مبخر بطبقة رقيقة</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">سبانش لاتيه</span>
+            <span class="price">٦٥</span>
+          </div>
+          <p class="item-desc">قهوة مع حليب مكثف محلى وقرفة</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">قهوة تركي</span>
+            <span class="price">٣٥</span>
+          </div>
+          <p class="item-desc">سادة، وسط، أو زيادة — بتتحمّص يوميًا</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">موكا برتقالي</span>
+            <span class="price">٧٠</span>
+          </div>
+          <p class="item-desc">شوكولاتة داكنة مع لمحة برتقال وقشطة خفيفة</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="cat-head">
+        <span class="cat-pill">مشروبات باردة</span>
+        <span class="cat-rule"></span>
+      </div>
+      <div class="grid">
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">آيس كراميل ماكياتو</span>
+            <span class="price">٧٠</span>
+          </div>
+          <p class="item-desc">إسبريسو على ثلج مع صوص كراميل منزلي</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">كولد برو</span>
+            <span class="price">٦٥</span>
+          </div>
+          <p class="item-desc">تخمير بارد لمدة ١٦ ساعة، نكهة ناعمة وقليلة الحموضة</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">ليموناضة بالنعناع</span>
+            <span class="price">٤٥</span>
+          </div>
+          <p class="item-desc">ليمون طازة، نعناع، وثلج مجروش</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">مانجو سموزي</span>
+            <span class="price">٥٥</span>
+          </div>
+          <p class="item-desc">مانجو طبيعي مخفوق مع زبادي وعسل نحل</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="cat-head">
+        <span class="cat-pill">حلويات وأكل خفيف</span>
+        <span class="cat-rule"></span>
+      </div>
+      <div class="grid">
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">تشيز كيك بسكويت</span>
+            <span class="price">٨٠</span>
+          </div>
+          <p class="item-desc">قاعدة بسكويت محمص مع طبقة جبن كريمي</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">كرواسون لوتس</span>
+            <span class="price">٦٠</span>
+          </div>
+          <p class="item-desc">عجينة مقرمشة محشوة كريمة لوتس دافئة</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">توست أفوكادو</span>
+            <span class="price">٧٥</span>
+          </div>
+          <p class="item-desc">خبز محمص، أفوكادو مهروس، وفلفل أحمر مشوي</p>
+        </div>
+        <div>
+          <div class="item-name-row">
+            <span class="item-name">براونيز شوكولاتة</span>
+            <span class="price">٥٠</span>
+          </div>
+          <p class="item-desc">قطعة دافئة، مركز الشوكولاتة سايح</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <span class="foot-mark">koky land</span>
+    الأسعار بالجنيه المصري وشاملة الضريبة
+  </footer>
+
+</div>
+</body>
+</html>
